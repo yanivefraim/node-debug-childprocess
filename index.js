@@ -1,7 +1,9 @@
 const spawn = require('child_process').spawn;
 const path = require('path');
 
-const ls = spawn('node', [path.resolve('./child.js')], {execArgv: '--debug-brk=4545'});
+const file = path.resolve('./child.js');
+const args = ['--inspect=9228', '--debug-brk', file];
+const ls = spawn('node', args);
 
 ls.stdout.on('data', (data) => {
   console.log(`stdout: ${data}`);
